@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f368384a-e66f-46cb-aa05-8a5865081856" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ConsoleCustomerList.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CustomerStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/NotInListException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/WrongCommandException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/WrongEmailException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/WrongNameException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/WrongPhoneException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CustomerStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,30 +80,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/CustomerStorage.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="!(command.equals(&quot;add&quot;) || command.equals(&quot;list&quot;)|| command.equals(&quot;remove&quot;) || command.equals(&quot;count&quot;) || command.equals(&quot;help&quot;))" language="JAVA" />

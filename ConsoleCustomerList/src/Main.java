@@ -23,10 +23,10 @@ public class Main
             for (;;) {
                 String command = scanner.nextLine();
                 tokens = command.split("\\s+", 2);
+
                 try {
                     checkCommandFormat(tokens[0]);
-                    if (tokens[0].equals("remove")) executor.checkRemoval(tokens[1]);
-                    else if (tokens[0].equals("add")) executor.checkCustomerFormat(tokens[1]);
+                    if (tokens[0].equals("add") || tokens[0].equals("remove")) executor.checkNamePhoneEmail(tokens[0], tokens[1]);
                     break;
                 } catch (WrongCommandException | WrongPhoneException | WrongEmailException | WrongNameException | NotInListException e) {
                     e.printStackTrace();
