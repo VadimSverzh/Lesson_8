@@ -1,3 +1,4 @@
+import CustomerInfo.CustomerStorage;
 import Exceptions.*;
 
 import java.util.Scanner;
@@ -28,8 +29,8 @@ public class Main
                     checkCommandFormat(tokens[0]);
                     if (tokens[0].equals("add") || tokens[0].equals("remove")) executor.checkNamePhoneEmail(tokens[0], tokens[1]);
                     break;
-                } catch (WrongCommandException | WrongPhoneException | WrongEmailException | WrongNameException | NotInListException e) {
-                    e.printStackTrace();
+                } catch (AllExceptions e) {
+                    System.out.println(e.getMessage());
                 }
             }
 
@@ -56,6 +57,6 @@ public class Main
     private static void checkCommandFormat (String command) throws WrongCommandException {
         if (!(command.equals("add") || command.equals("list")
                 || command.equals("remove") || command.equals("count") || command.equals("help")))
-            throw new WrongCommandException();
+            throw new WrongCommandException(commandError);
     }
 }

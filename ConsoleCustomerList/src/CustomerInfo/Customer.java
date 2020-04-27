@@ -1,3 +1,5 @@
+package CustomerInfo;
+
 public class Customer
 {
     private String name;

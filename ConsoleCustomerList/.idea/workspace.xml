@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f368384a-e66f-46cb-aa05-8a5865081856" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/AllExceptions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/WrongAddCommandException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/WrongRemoveCommandException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomerStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerInfo/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CustomerStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerInfo/CustomerStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/NotInListException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/NotInListException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongCommandException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongCommandException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongEmailException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongEmailException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongNameException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongNameException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongPhoneException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongPhoneException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,9 +89,29 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="!(command.equals(&quot;add&quot;) || command.equals(&quot;list&quot;)|| command.equals(&quot;remove&quot;) || command.equals(&quot;count&quot;) || command.equals(&quot;help&quot;))" language="JAVA" />
+        <watch expression="e.getMessage()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
