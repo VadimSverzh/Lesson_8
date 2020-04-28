@@ -3,8 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="f368384a-e66f-46cb-aa05-8a5865081856" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CustomerInfo/CustomerStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerInfo/CustomerStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/AllExceptions.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Exceptions/NotInListException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/NotInListException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongAddCommandException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongAddCommandException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongCommandException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongCommandException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongEmailException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongEmailException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongNameException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongNameException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongPhoneException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongPhoneException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongRemoveCommandException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongRemoveCommandException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

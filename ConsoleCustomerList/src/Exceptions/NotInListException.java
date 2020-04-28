@@ -1,6 +1,6 @@
 package Exceptions;
 
-public class NotInListException extends AllExceptions {
+public class NotInListException extends RuntimeException {
     public NotInListException (String message){
         super(message);
     }

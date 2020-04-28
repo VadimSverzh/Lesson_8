@@ -24,25 +24,31 @@ public class Main
             for (;;) {
                 String command = scanner.nextLine();
                 tokens = command.split("\\s+", 2);
-
                 try {
                     checkCommandFormat(tokens[0]);
-                    if (tokens[0].equals("add") || tokens[0].equals("remove")) executor.checkNamePhoneEmail(tokens[0], tokens[1]);
                     break;
-                } catch (AllExceptions e) {
+                } catch (RuntimeException e) {
                     System.out.println(e.getMessage());
                 }
             }
 
             switch (tokens[0]) {
                 case "add":
-                    executor.addCustomer(tokens[1]);
-                    break;
+                        try {
+                            executor.addCustomer(tokens[1]);
+                        } catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
                 case "list":
                     executor.listCustomers();
                     break;
                 case "remove":
-                    executor.removeCustomer(tokens[1]);
+                        try {
+                            executor.removeCustomer(tokens[1]);
+                        } catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
                     break;
                 case "count":
                     System.out.println("There are " + executor.getCount() + " customers");
@@ -54,7 +60,7 @@ public class Main
         }
     }
 
-    private static void checkCommandFormat (String command) throws WrongCommandException {
+    private static void checkCommandFormat (String command) {
         if (!(command.equals("add") || command.equals("list")
                 || command.equals("remove") || command.equals("count") || command.equals("help")))
             throw new WrongCommandException(commandError);

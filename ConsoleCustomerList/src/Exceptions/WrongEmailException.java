@@ -1,6 +1,6 @@
 package Exceptions;
 
-public class WrongEmailException extends AllExceptions{
+public class WrongEmailException extends RuntimeException{
     public WrongEmailException (String message){
         super(message);
     }
