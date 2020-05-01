@@ -20,42 +20,24 @@ public class Main
         CustomerStorage executor = new CustomerStorage();
         for(;;) {
             String[] tokens;
-
-            for (;;) {
-                String command = scanner.nextLine();
-                tokens = command.split("\\s+", 2);
-                try {
-                    checkCommandFormat(tokens[0]);
-                    break;
-                } catch (RuntimeException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-
-            switch (tokens[0]) {
-                case "add":
-                        try {
-                            executor.addCustomer(tokens[1]);
-                        } catch (RuntimeException e) {
-                            System.out.println(e.getMessage());
-                        }
+            String command = scanner.nextLine();
+            tokens = command.split("\\s+", 2);
+            try {
+                checkCommandFormat(tokens[0]);
+                switch (tokens[0]) {
+                    case "add": executor.addCustomer(tokens[1]);
                         break;
-                case "list":
-                    executor.listCustomers();
-                    break;
-                case "remove":
-                        try {
-                            executor.removeCustomer(tokens[1]);
-                        } catch (RuntimeException e) {
-                            System.out.println(e.getMessage());
-                        }
-                    break;
-                case "count":
-                    System.out.println("There are " + executor.getCount() + " customers");
-                    break;
-                case "help":
-                    System.out.println(helpText);
-                    break;
+                    case "list": executor.listCustomers();
+                        break;
+                    case "remove":executor.removeCustomer(tokens[1]);
+                        break;
+                    case "count": System.out.println("There are " + executor.getCount() + " customers");
+                        break;
+                    case "help": System.out.println(helpText);
+                        break;
+                }
+            } catch (AllExceptions e) {
+                System.out.println(e.getMessage());
             }
         }
     }

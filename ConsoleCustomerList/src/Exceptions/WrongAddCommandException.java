@@ -1,6 +1,6 @@
 package Exceptions;
 
-public class WrongAddCommandException extends RuntimeException {
+public class WrongAddCommandException extends AllExceptions {
     public WrongAddCommandException(String message) {
         super(message);
     }

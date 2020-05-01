@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f368384a-e66f-46cb-aa05-8a5865081856" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/AllExceptions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomerInfo/CustomerStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerInfo/CustomerStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exceptions/AllExceptions.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Exceptions/NotInListException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/NotInListException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongAddCommandException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongAddCommandException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Exceptions/WrongCommandException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/WrongCommandException.java" afterDir="false" />

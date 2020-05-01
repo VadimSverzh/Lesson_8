@@ -1,6 +1,6 @@
 package Exceptions;
 
-public class WrongPhoneException extends RuntimeException {
+public class WrongPhoneException extends AllExceptions {
     public WrongPhoneException (String message){
         super(message);
     }
