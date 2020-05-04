@@ -3,9 +3,31 @@ import core.Station;
 import junit.framework.TestCase;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class RouteCalculatorTest extends TestCase {
+    /*  O Ленинский проспект
+     *  |
+     *  |
+     *  O Шаболовская                                                   O Китай-город
+     *  |                                                               |
+     *  |   Октябрьская-2      Серпуховская       Павелецкая            |Таганская            Курская
+     *  O---------------------O-------------------O--------------------O----------------------O         КОЛЬЦЕВАЯ
+     * Октябрьская-1                                                   | Таганская
+     * |                                                               |
+     * |                                                               |
+     * O Третьяковская                                                 O Пролетарская
+     *                                                                 |
+     *  СОКОЛЬНИЧЕСКАЯ ЛИНИЯ                                           |
+     *                                                                 O Волгоградский проспект
+     *                                                                 |
+     *                                                                 |
+     *                                                                 O Текстильщики
+     *                                                                 |
+     *                                                                 |
+     *                                                                 O Кузьминки
+     *
+     *                                                                  ТАГАНСКО-КРАСНОПРЕСНЕНСКАЯ ЛИНИЯ
+     */
     private Line taganskoKrasn;
     private Line sokolnich;
     private Line kolcevaya;
@@ -37,12 +59,10 @@ public class RouteCalculatorTest extends TestCase {
 
     protected void setUp() throws Exception{
 
-        //создал 3 линии метро
         taganskoKrasn = new Line(1, "Таганско-Краснопресненская");
         sokolnich = new Line(2, "Сокольническая");
         kolcevaya = new Line(3, "Кольцевая");
 
-        //создал и добавил станции в каждую из линий
         kuzminki = new Station("Кузьминки", taganskoKrasn);
         taganskoKrasn.addStation(kuzminki);
         tekstilshiki = new Station("Текстильщики", taganskoKrasn);
@@ -76,111 +96,110 @@ public class RouteCalculatorTest extends TestCase {
         kurskaya = new Station("Курская", kolcevaya);
         kolcevaya.addStation(kurskaya);
 
-        //добавил все линии в коллекцию всех линий
-        ArrayList <Line> allLines = new ArrayList<>();
-        allLines.add(kolcevaya);
-        allLines.add(sokolnich);
-        allLines.add(taganskoKrasn);
+        List<Station> connectionsKolcevayaKrasnopresn = new ArrayList<>();
+        connectionsKolcevayaKrasnopresn.add(taganskayaKolcevaya);
+        connectionsKolcevayaKrasnopresn.add(taganskayaTaganskoKrasn);
 
-        TreeMap<Station, TreeSet<Station>> connectionsTest = new TreeMap<>();
+        List<Station> connectionsKolcevayaSokolnich = new ArrayList<>();
+        connectionsKolcevayaSokolnich.add(oktyabrskayaOne);
+        connectionsKolcevayaSokolnich.add(oktyabrskayaTwo);
 
-        TreeSet<Station> taganskoKrasn2Kolcevaya = new TreeSet<>();
-        TreeSet<Station> kolcevaya2TaganskoKrasn = new TreeSet<>();
-        TreeSet<Station> kolcevaya2Sokolnicheskaya = new TreeSet<>();
-        TreeSet<Station> soklonicheskaya2Kolcevaya = new TreeSet<>();
+        stationIndexTest.addConnection(connectionsKolcevayaKrasnopresn);
+        stationIndexTest.addConnection(connectionsKolcevayaSokolnich);
 
-        taganskoKrasn2Kolcevaya.add(taganskayaKolcevaya);
-        kolcevaya2TaganskoKrasn.add(taganskayaTaganskoKrasn);
-        kolcevaya2Sokolnicheskaya.add(oktyabrskayaTwo);
-        soklonicheskaya2Kolcevaya.add(oktyabrskayaOne);
+        stationIndexTest.addLine(taganskoKrasn);
+        stationIndexTest.addLine(sokolnich);
+        stationIndexTest.addLine(kolcevaya);
 
-        connectionsTest.put(taganskayaTaganskoKrasn, taganskoKrasn2Kolcevaya);
-        connectionsTest.put(taganskayaKolcevaya, kolcevaya2TaganskoKrasn);
-        connectionsTest.put(oktyabrskayaOne, kolcevaya2Sokolnicheskaya);
-        connectionsTest.put(oktyabrskayaTwo, soklonicheskaya2Kolcevaya);
-
-        HashMap <Integer, Line> number2lineTest = new HashMap<>();
-        number2lineTest.put(taganskoKrasn.getNumber(), taganskoKrasn);
-        number2lineTest.put(sokolnich.getNumber(), sokolnich);
-        number2lineTest.put(kolcevaya.getNumber(), kolcevaya);
-
-        TreeSet<Station>stationsTest = new TreeSet<>();
-        allLines.forEach(a -> stationsTest.addAll(a.getStations()));
-
-        stationIndexTest.number2line = number2lineTest;
-        stationIndexTest.connections = connectionsTest;
-        stationIndexTest.stations = stationsTest;
+        taganskoKrasn.getStations().forEach(station -> stationIndexTest.addStation(station));
+        sokolnich.getStations().forEach(station -> stationIndexTest.addStation(station));
+        kolcevaya.getStations().forEach(station -> stationIndexTest.addStation(station));
 
         testRouteCalculator = new RouteCalculator(stationIndexTest);
-
-        expectedShortestRouteFromAtoA.add(kuzminki);
-
-        expectedShortestRouteOnLine.addAll(taganskoKrasn.getStations());
-
-        expectedShortestRouteWithOneConnection.addAll(taganskoKrasn.getStations().stream()
-                .filter(station -> !station.equals(kitayGorod)).collect(Collectors.toList()));
-        expectedShortestRouteWithOneConnection.addAll((kolcevaya.getStations()).stream()
-                .filter(station -> station.equals(taganskayaKolcevaya) || station.equals(kurskaya)).collect(Collectors.toList()));
-
-        expectedShortestRouteWithTwoConnections.addAll((sokolnich.getStations()).stream()
-                .filter(station -> !station.equals(leninskiyProspekt) && !station.equals(shabolovskaya)).collect(Collectors.toList()));
-        expectedShortestRouteWithTwoConnections.addAll((kolcevaya.getStations()).stream()
-                .filter(station -> !station.equals(kurskaya)).collect(Collectors.toList()));
-        expectedShortestRouteWithTwoConnections.addAll((taganskoKrasn.getStations()).stream()
-                .filter(station -> station.equals(kitayGorod) || station.equals(taganskayaTaganskoKrasn)).collect(Collectors.toList()));
-
     }
 
     public void testGetShortestRouteFromAtoA() {
+
+        expectedShortestRouteFromAtoA.add(kuzminki);
+
         List<Station> actual = testRouteCalculator.getShortestRoute(kuzminki, kuzminki);
         List<Station> expected = expectedShortestRouteFromAtoA;
+
         assertEquals(expected,actual);
     }
 
     public void testGetShortestRouteOnTheLine() {
+
+        expectedShortestRouteOnLine.addAll(taganskoKrasn.getStations());
+
         List<Station> actual = testRouteCalculator.getShortestRoute(kuzminki, kitayGorod);
         List<Station> expected = expectedShortestRouteOnLine;
+
         assertEquals(expected,actual);
     }
 
     public void testGetShortestRouteWithOneConnection() {
+
+        expectedShortestRouteWithOneConnection.add(kuzminki);
+        expectedShortestRouteWithOneConnection.add(tekstilshiki);
+        expectedShortestRouteWithOneConnection.add(volgogradskiyProspekt);
+        expectedShortestRouteWithOneConnection.add(proletarskaya);
+        expectedShortestRouteWithOneConnection.add(taganskayaTaganskoKrasn);
+        expectedShortestRouteWithOneConnection.add(taganskayaKolcevaya);
+        expectedShortestRouteWithOneConnection.add(kurskaya);
+
         List<Station> actual = testRouteCalculator.getShortestRoute(kuzminki, kurskaya);
         List<Station> expected = expectedShortestRouteWithOneConnection;
+
         assertEquals(expected, actual);
     }
 
     public void testGetShortestRouteWithTwoConnections() {
+
+        expectedShortestRouteWithTwoConnections.add(tretyakovskaya);
+        expectedShortestRouteWithTwoConnections.add(oktyabrskayaOne);
+        expectedShortestRouteWithTwoConnections.add(oktyabrskayaTwo);
+        expectedShortestRouteWithTwoConnections.add(serpuhovskaya);
+        expectedShortestRouteWithTwoConnections.add(paveleckaya);
+        expectedShortestRouteWithTwoConnections.add(taganskayaKolcevaya);
+        expectedShortestRouteWithTwoConnections.add(taganskayaTaganskoKrasn);
+        expectedShortestRouteWithTwoConnections.add(kitayGorod);
+
         List<Station> actual = testRouteCalculator.getShortestRoute(tretyakovskaya, kitayGorod);
         List<Station> expected = expectedShortestRouteWithTwoConnections;
+
         assertEquals(expected, actual);
     }
 
     public void testCalculateDurationFromAtoA() {
+
         double actual = RouteCalculator.calculateDuration(testRouteCalculator.getShortestRoute(kurskaya, kurskaya));
         double expected = 0.0;
+
         assertEquals(expected,actual);
     }
 
     public void testCalculateDurationOnTheLine() {
+
         double actual = RouteCalculator.calculateDuration(testRouteCalculator.getShortestRoute(oktyabrskayaTwo, kurskaya));
         double expected = 10.0;
+
         assertEquals(expected,actual);
     }
 
     public void testCalculateDurationWithOneConnection() {
+
         double actual = RouteCalculator.calculateDuration(testRouteCalculator.getShortestRoute(oktyabrskayaTwo, kuzminki));
         double expected = 21.0;
+
         assertEquals(expected,actual);
     }
 
     public void testCalculateDurationWithTwoConnections() {
+
         double actual = RouteCalculator.calculateDuration(testRouteCalculator.getShortestRoute(tretyakovskaya, kitayGorod));
         double expected = 19.5;
-        assertEquals(expected,actual);
-    }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
+        assertEquals(expected,actual);
     }
 }
