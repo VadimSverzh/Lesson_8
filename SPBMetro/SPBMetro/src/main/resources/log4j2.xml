@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <appenders>
+        <File name="inputErrors"  fileName="C:\Users\User\Desktop\Java\Skillbox\Lesson_8\SPBMetro\SPBMetro\src\logs\input_errors.log">
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="inputStations" fileName="C:\Users\User\Desktop\Java\Skillbox\Lesson_8\SPBMetro\SPBMetro\src\logs\input_stations.log">
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="exceptions" fileName="C:\Users\User\Desktop\Java\Skillbox\Lesson_8\SPBMetro\SPBMetro\src\logs\exceptions.log">
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </appenders>
+
+    <loggers>
+            <root level = "OFF">
+            </root>
+            <logger name = "inputErrorsLogger" level="debug">
+                <appender-ref ref="inputErrors" level="info"/>
+            </logger>
+            <logger name = "inputStationsLogger" level = "debug">
+                <appender-ref ref="inputStations" level="info"/>
+            </logger>
+            <logger name = "exceptionsLogger" additivity = "false" level = "error">
+                <appender-ref ref="exceptions" level="error"/>
+            </logger>
+    </loggers>
+</configuration>

@@ -1,5 +1,7 @@
 import core.Line;
 import core.Station;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,8 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Main
 {
+    private static Logger inputErrorsLogger = LogManager.getLogger("inputErrorsLogger");
+    private static Logger inputStationsLogger = LogManager.getLogger("inputStationsLogger");
+    private static Logger exceptionLogger = LogManager.getLogger("exceptionsLogger");
+
     private static String dataFile = "src/main/resources/map.json";
     private static Scanner scanner;
 
@@ -25,15 +32,21 @@ public class Main
         scanner = new Scanner(System.in);
         for(;;)
         {
-            Station from = takeStation("Введите станцию отправления:");
-            Station to = takeStation("Введите станцию назначения:");
+            try {
+                Station from = takeStation("Введите станцию отправления:");
+                Station to = takeStation("Введите станцию назначения:");
 
-            List<Station> route = calculator.getShortestRoute(from, to);
-            System.out.println("Маршрут:");
-            printRoute(route);
+                List<Station> route = calculator.getShortestRoute(from, to);
+                System.out.println("Маршрут:");
+                printRoute(route);
 
-            System.out.println("Длительность: " +
-                RouteCalculator.calculateDuration(route) + " минут");
+                System.out.println("Длительность: " +
+                        RouteCalculator.calculateDuration(route) + " минут");
+                throw new Exception();
+            }
+            catch (Exception e) {
+                exceptionLogger.error(e);
+            }
         }
     }
 
@@ -71,8 +84,10 @@ public class Main
             String line = scanner.nextLine().trim();
             Station station = stationIndex.getStation(line);
             if(station != null) {
+                inputStationsLogger.info("Введена станция " + line);
                 return station;
             }
+            inputErrorsLogger.info("Введена неверная станция " + line);
             System.out.println("Станция не найдена :(");
         }
     }
