@@ -87,7 +87,7 @@ public class Main
                 inputStationsLogger.info("Введена станция " + line);
                 return station;
             }
-            inputErrorsLogger.info("Введена неверная станция " + line);
+            inputErrorsLogger.warn("Введена неверная станция " + line);
             System.out.println("Станция не найдена :(");
         }
     }

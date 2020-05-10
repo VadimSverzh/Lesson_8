@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="WARN">
+    <Properties>
+        <Property name = "path">C:\Users\User\Desktop\Java\Skillbox\Lesson_8\SPBMetro\SPBMetro\src\logs</Property>
+        <Property name = "pattern">%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Property>
+    </Properties>
     <appenders>
-        <File name="inputErrors"  fileName="C:\Users\User\Desktop\Java\Skillbox\Lesson_8\SPBMetro\SPBMetro\src\logs\input_errors.log">
-            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        <File name="inputErrors"  fileName="${path}\input_errors.log">
+            <PatternLayout pattern="${pattern}"/>
+            <ThresholdFilter level = "error" onMatch = "DENY" onMismatch = "NEUTRAL" />
         </File>
-        <File name="inputStations" fileName="C:\Users\User\Desktop\Java\Skillbox\Lesson_8\SPBMetro\SPBMetro\src\logs\input_stations.log">
-            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        <File name="inputStations" fileName="${path}\input_stations.log">
+            <PatternLayout pattern="${pattern}"/>
+            <ThresholdFilter level = "warn" onMatch = "DENY" onMismatch = "NEUTRAL" />
         </File>
-        <File name="exceptions" fileName="C:\Users\User\Desktop\Java\Skillbox\Lesson_8\SPBMetro\SPBMetro\src\logs\exceptions.log">
-            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        <File name="exceptions" fileName="${path}\exceptions.log">
+            <PatternLayout pattern="${pattern}"/>
+            <ThresholdFilter level = "fatal" onMatch = "DENY" onMismatch = "NEUTRAL" />
         </File>
     </appenders>
 
     <loggers>
             <root level = "OFF">
             </root>
-            <logger name = "inputErrorsLogger" level="debug">
-                <appender-ref ref="inputErrors" level="info"/>
+            <logger name = "inputErrorsLogger" level="warn">
+                <appender-ref ref="inputErrors"/>
             </logger>
-            <logger name = "inputStationsLogger" level = "debug">
-                <appender-ref ref="inputStations" level="info"/>
+            <logger name = "inputStationsLogger" level = "info">
+                <appender-ref ref="inputStations"/>
             </logger>
-            <logger name = "exceptionsLogger" additivity = "false" level = "error">
-                <appender-ref ref="exceptions" level="error"/>
+            <logger name = "exceptionsLogger" level = "error">
+                <appender-ref ref="exceptions"/>
             </logger>
     </loggers>
 </configuration>
