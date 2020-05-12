@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="WARN">
+<configuration status="FATAL">
     <Properties>
         <Property name = "path">C:\Users\User\Desktop\Java\Skillbox\Lesson_8\SPBMetro\SPBMetro\src\logs</Property>
         <Property name = "pattern">%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Property>
@@ -20,16 +20,10 @@
     </appenders>
 
     <loggers>
-            <root level = "OFF">
-            </root>
-            <logger name = "inputErrorsLogger" level="warn">
-                <appender-ref ref="inputErrors"/>
-            </logger>
-            <logger name = "inputStationsLogger" level = "info">
+            <root level = "info">
+                <appender-ref ref="inputErrors" level = "warn"/>
                 <appender-ref ref="inputStations"/>
-            </logger>
-            <logger name = "exceptionsLogger" level = "error">
-                <appender-ref ref="exceptions"/>
-            </logger>
+                <appender-ref ref="exceptions" level = "error"/>
+            </root>
     </loggers>
 </configuration>

@@ -15,9 +15,7 @@ import java.util.Scanner;
 
 public class Main
 {
-    private static Logger inputErrorsLogger = LogManager.getLogger("inputErrorsLogger");
-    private static Logger inputStationsLogger = LogManager.getLogger("inputStationsLogger");
-    private static Logger exceptionLogger = LogManager.getLogger("exceptionsLogger");
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     private static String dataFile = "src/main/resources/map.json";
     private static Scanner scanner;
@@ -45,7 +43,7 @@ public class Main
                 throw new Exception();
             }
             catch (Exception e) {
-                exceptionLogger.error(e);
+                LOGGER.error(e);
             }
         }
     }
@@ -84,10 +82,10 @@ public class Main
             String line = scanner.nextLine().trim();
             Station station = stationIndex.getStation(line);
             if(station != null) {
-                inputStationsLogger.info("Введена станция " + line);
+                LOGGER.info("Введена станция: \"{}\"", line);
                 return station;
             }
-            inputErrorsLogger.warn("Введена неверная станция " + line);
+            LOGGER.warn("Введена неверная станция  \"{}\"", line);
             System.out.println("Станция не найдена :(");
         }
     }
