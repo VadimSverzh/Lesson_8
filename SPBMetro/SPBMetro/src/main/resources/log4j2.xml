@@ -7,23 +7,23 @@
     <appenders>
         <File name="inputErrors"  fileName="${path}\input_errors.log">
             <PatternLayout pattern="${pattern}"/>
-            <ThresholdFilter level = "error" onMatch = "DENY" onMismatch = "NEUTRAL" />
+                <MarkerFilter marker = "INPUT_ERRORS" />
         </File>
         <File name="inputStations" fileName="${path}\input_stations.log">
             <PatternLayout pattern="${pattern}"/>
-            <ThresholdFilter level = "warn" onMatch = "DENY" onMismatch = "NEUTRAL" />
+                <MarkerFilter marker = "INPUT_STATIONS" />
         </File>
         <File name="exceptions" fileName="${path}\exceptions.log">
             <PatternLayout pattern="${pattern}"/>
-            <ThresholdFilter level = "fatal" onMatch = "DENY" onMismatch = "NEUTRAL" />
+                <MarkerFilter marker = "EXCEPTIONS" />
         </File>
     </appenders>
 
     <loggers>
             <root level = "info">
-                <appender-ref ref="inputErrors" level = "warn"/>
+                <appender-ref ref="inputErrors"/>
                 <appender-ref ref="inputStations"/>
-                <appender-ref ref="exceptions" level = "error"/>
+                <appender-ref ref="exceptions"/>
             </root>
     </loggers>
 </configuration>

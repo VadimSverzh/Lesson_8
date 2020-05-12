@@ -2,6 +2,8 @@ import core.Line;
 import core.Station;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,6 +18,10 @@ import java.util.Scanner;
 public class Main
 {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
+
+    private static final Marker INPUT_STATIONS_MARKER = MarkerManager.getMarker("INPUT_STATIONS");
+    private static final Marker INPUT_ERRORS_MARKER = MarkerManager.getMarker("INPUT_ERRORS");
+    private static final Marker EXCEPTIONS_MARKER = MarkerManager.getMarker("EXCEPTIONS");
 
     private static String dataFile = "src/main/resources/map.json";
     private static Scanner scanner;
@@ -43,7 +49,7 @@ public class Main
                 throw new Exception();
             }
             catch (Exception e) {
-                LOGGER.error(e);
+                LOGGER.error(EXCEPTIONS_MARKER, e.toString());
             }
         }
     }
@@ -82,10 +88,10 @@ public class Main
             String line = scanner.nextLine().trim();
             Station station = stationIndex.getStation(line);
             if(station != null) {
-                LOGGER.info("Введена станция: \"{}\"", line);
+                LOGGER.info(INPUT_STATIONS_MARKER,"Введена станция: \"{}\"", line);
                 return station;
             }
-            LOGGER.warn("Введена неверная станция  \"{}\"", line);
+            LOGGER.warn(INPUT_ERRORS_MARKER,"Введена неверная станция  \"{}\"", line);
             System.out.println("Станция не найдена :(");
         }
     }
